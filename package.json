@@ -1,0 +1,9 @@
+{
+  "name": "jsx-i18n",
+  "version": "0.0.0",
+  "dependencies": {
+    "esprima-fb": "~6001.1001.0-dev-harmony-fb",
+    "jstransform": "~6.3.2"
+  },
+  "main": "index.js"
+}
