@@ -32,8 +32,8 @@ This script reads JSX from stdin and writes JS to stdout. Example:
 
 ```
 // in
-var x = <div><$_ name={WORLD}>hello %(name)s</$_></div>;
+var x = <div><$_ name={world}>hello %(name)s</$_></div>;
 
 // out
-var x = React.createElement("div", null, $_({name: "WORLD"}, "hello %(name)s"));
+var x = React.createElement("div", null, $_({name: world}, "hello %(name)s"));
 ```
