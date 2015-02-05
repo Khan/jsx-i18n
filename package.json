@@ -1,9 +1,22 @@
 {
   "name": "jsx-i18n",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "esprima-fb": "~6001.1001.0-dev-harmony-fb",
-    "jstransform": "~6.3.2"
+    "jstransform": "~6.3.2",
+    "react-tools": "^0.12.0"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "description": "Simple [jstransform](https://github.com/facebook/jstransform) pass for use with the JSX transformer in React 0.12+ to convert JSX `<$_>...</$_>` tags (only) to `$_(...)` calls, to simulate how React 0.11 behaved.",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/jsx-i18n.git"
+  },
+  "author": "Ben Alpert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Khan/jsx-i18n/issues"
+  },
+  "homepage": "https://github.com/Khan/jsx-i18n"
 }

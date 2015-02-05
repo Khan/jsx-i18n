@@ -223,14 +223,42 @@ function visitReactTag(traverse, object, path, state) {
   return false;
 }
 
-visitReactTag.test = function(object, path, state) {
-  if (object.type === Syntax.XJSElement) {
-    var openingElement = object.openingElement;
-    var nameObject = openingElement.name;
-    return nameObject.type === Syntax.XJSIdentifier && nameObject.name === "$_";
+var getVisitorList = function(i18nFuncList) {
+  var i18nTestHash = {};
+  for (var i = 0; i < i18nFuncList.length; i++) {
+    i18nTestHash["__i18n__" + i18nFuncList[i]] = true;
   }
+
+  var visitor = function(traverse, object, path, state) {
+    return visitReactTag(traverse, object, path, state);
+  };
+
+  visitor.test = function(object, path, state) {
+    if (object.type === Syntax.XJSElement) {
+      var openingElement = object.openingElement;
+      var nameObject = openingElement.name;
+      return nameObject.type === Syntax.XJSIdentifier &&
+          i18nTestHash["__i18n__" + nameObject.name];
+    }
+  };
+
+  return [visitor];
 };
 
-exports.visitorList = [
-  visitReactTag
-];
+/**
+ * Takes an array of i18n function names as strings,
+ * and returns an array of visitors.
+ *
+ * getVisitorList(["$_", "$i18nDoNotTranslate"])
+ * => [<visitor>]
+ */
+exports.getVisitorList = getVisitorList;
+
+/**
+ * deprecated: visitorList
+ *
+ * For backwards compatibility, this returns the list with just
+ * the i18n function `$_`
+ */
+exports.visitorList = getVisitorList(["$_"]);
+

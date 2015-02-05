@@ -1,1 +1,1 @@
-exports.visitorList = require('./transforms/react').visitorList;
+module.exports = require('./transforms/react');

@@ -21,7 +21,9 @@ process.stdin.on("data", function(data) {
 });
 
 process.stdin.on("end", function() {
-    var visitorList = jsxI18n.visitorList.concat(visitors.getAllVisitors());
+    var visitorList = jsxI18n.getVisitorList([
+        "$_"
+    ]).concat(visitors.getAllVisitors());
     js = jstransform.transform(visitorList, js).code;
 
     process.stdout.write(js);
